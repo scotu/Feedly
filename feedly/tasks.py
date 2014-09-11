@@ -8,6 +8,8 @@ def fanout_operation(feed_manager, feed_class, user_ids, operation, operation_kw
     Simple task wrapper for _fanout task
     Just making sure code is where you expect it :)
     '''
+    from feedly.storage.cassandra.connection import setup_connection
+    setup_connection()
     feed_manager.fanout(user_ids, feed_class, operation, operation_kwargs)
     return "%d user_ids, %r, %r (%r)" % (len(user_ids), feed_class, operation, operation_kwargs)
 
